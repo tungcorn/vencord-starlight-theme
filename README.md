@@ -79,6 +79,70 @@ The vignette dims the center to reduce eye strain. Edit the `::before` block to 
 }
 ```
 
+
+---
+
+## 🛠️ Troubleshooting
+
+### ❌ Background is completely black
+
+This is the most common issue. It happens when Discord cannot load the background image URL.
+
+**Cause 1 — Using aw.githubusercontent.com links**
+
+GitHub raw URLs serve files as 	ext/plain, not image/jpeg, so Discord/Electron will reject them and show a black background.
+
+✅ **Fix:** Use a direct-link image host instead. Recommended options:
+- [catbox.moe](https://catbox.moe) — free, no account needed, permanent links
+- [imgbb.com](https://imgbb.com) — free with account
+- [postimages.org](https://postimages.org)
+
+Upload your image there and paste the **direct link** (ending in .jpg / .png) into --theme-background-image.
+
+**Cause 2 — Local file paths (C:\Users\...)**
+
+Electron/Chromium blocks access to local filesystem paths in CSS for security reasons.
+
+✅ **Fix:** Upload the image to any online host (see above) and use the HTTPS URL.
+
+**Cause 3 — Expired Discord CDN links**
+
+Discord attachment URLs (cdn.discordapp.com/attachments/...) expire after a few days.
+
+✅ **Fix:** Re-upload the image to a permanent host like catbox.moe.
+
+---
+
+### ❌ Background loads but bottom half is black / cut off
+
+✅ **Fix:** Make sure these rules are present in your CSS:
+
+```css
+body,
+#app-mount {
+  background-attachment: fixed !important;
+  background-size: cover !important;
+}
+```
+
+---
+
+### ❌ Background image is too bright / hard to read text
+
+✅ **Fix:** Increase the dark overlay intensity in the ::before block:
+
+```css
+#app-mount::before {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.55) 0%,   /* ← Increase this value (0.0–1.0) */
+    rgba(0, 0, 0, 0.30) 45%,
+    rgba(0, 0, 0, 0.10) 75%,
+    rgba(0, 0, 0, 0.00) 100%
+  );
+}
+```
+
 ---
 
 ## 📋 Requirements
