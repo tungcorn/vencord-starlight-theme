@@ -25,10 +25,10 @@
 2. Click **Online Themes** and paste the following URL:
 
 ```
-https://raw.githubusercontent.com/YOUR_USERNAME/vencord-starlight-theme/main/starlight.theme.css
+https://raw.githubusercontent.com/tungcorn/vencord-starlight-theme/main/starlight.theme.css
 ```
 
-> ⚠️ Replace `YOUR_USERNAME` with your actual GitHub username after pushing.
+> ⚠️ Replace `tungcorn` with your actual GitHub username after pushing.
 
 ### Method 2 — Local Theme File
 
