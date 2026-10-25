@@ -1,0 +1,202 @@
+/**
+* @name Starlight Cosmic Theme
+* @author TungVN (based on NotAnotherAnimeTheme by puckzxz)
+* @version 1.0
+* @description Starlight Cosmic - vibrant deep-space theme with dark vignette overlay, zero blur, and vivid nebula colors
+* @source https://github.com/puckzxz/NotAnotherAnimeTheme
+*/
+
+@import url(https://puckzxz.github.io/NotAnotherAnimeTheme/build/v3/naat.v3.css);
+
+:root {
+  /* ============================================================
+     1. HÌNH NỀN & ICON (SẮC NÉT NGUYÊN BẢN)
+     ============================================================ */
+  --theme-background-image: url(https://raw.githubusercontent.com/YOUR_USERNAME/vencord-starlight-theme/main/assets/background.jpg);
+  --home-icon-image: url(https://i.imgur.com/63g6Em8.jpg);
+  --home-icon-image-position: center center;
+  --home-icon-image-zoom: 100%;
+
+  /* ============================================================
+     2. BẢNG MÀU STARLIGHT COSMIC (RỰC RỠ ĐỒNG ĐIỆU VỚI TRANH)
+     ============================================================ */
+  --main-theme-color: #38bdf8;
+  --category-hover-color: #5eead4;
+  --member-listing-role-color: #38bdf8;
+
+  /* Trong suốt tuyệt đối để giữ 100% màu sắc rực rỡ gốc của ảnh */
+  --theme-transparency: transparent;
+  --context-menu-transparency: rgba(10, 15, 30, 0.90);
+
+  /* Hộp thoại & Embed mờ nhẹ, không làm tối tranh */
+  --message-box-transparency: rgba(10, 15, 30, 0.45);
+  --embed-background-transparency: rgba(10, 15, 30, 0.50);
+  --small-user-popout-background-image: var(--theme-background-image);
+  --small-user-popout-background-transparency: rgba(10, 15, 30, 0.75);
+  --small-user-popout-background-image-position: center;
+  --big-user-popout-background-image: var(--theme-background-image);
+  --big-user-popout-background-transparency: rgba(10, 15, 30, 0.75);
+  --big-user-popout-background-image-position: center;
+
+  /* Mention & Thông báo */
+  --mention-color: rgba(56, 189, 248, 0.15);
+  --mention-sider: #38bdf8;
+  --mention-hover-color: rgba(56, 189, 248, 0.22);
+
+  /* Vạch ngăn cách tin nhắn chưa đọc & Thanh tin nhắn mới */
+  --unread-message-divider-color: #f43f5e;
+  --unread-message-divider-font-color: #ffffff;
+  --new-messages-bar-background-color: #0284c7;
+  --new-messages-bar-font-color: #ffffff;
+
+  /* Nút video / Screen share */
+  --video-screen-button-background-color: rgba(255, 255, 255, 0.12);
+  --video-screen-button-foreground-color: #ffffff;
+  --video-screen-button-background-hovor-color: rgba(56, 189, 248, 0.25);
+  --video-screen-button-foreground-hovor-color: #ffffff;
+  --message-hover-buttons-background: rgba(255, 255, 255, 0.1);
+
+  /* Khối code (Code markup) */
+  --code-markup-background-color: rgba(8, 12, 24, 0.70);
+  --code-markup-border: 1px solid rgba(56, 189, 248, 0.25);
+
+  /* Thanh cuộn (Scrollbar) */
+  --scrollbar-color: rgba(56, 189, 248, 0.25);
+
+  /* Menu Emoji & Tìm kiếm */
+  --emoji-menu-background-color: rgba(10, 15, 30, 0.90);
+  --emoji-menu-sider-background-color: transparent;
+  --emoji-menu-server-header-background-color: rgba(10, 15, 30, 0.95);
+  --emoji-menu-bottom-bar-background-color: rgba(8, 12, 24, 0.95);
+  --emoji-menu-search-bar-background-color: rgba(255, 255, 255, 0.08);
+
+  --message-search-menu-background-color: rgba(10, 15, 30, 0.92);
+  --message-search-container-background-color: rgba(10, 15, 30, 0.75);
+  --message-search-result-background-color: rgba(255, 255, 255, 0.05);
+
+  /* Kênh văn bản & Voice */
+  --text-voice-channel-color: #cbd5e1;
+  --text-voice-channel-hover-color: #ffffff;
+  --text-voice-channel-selected-text-color: #ffffff;
+  --unread-text-channel-color: #ffffff;
+  --unread-text-channel-bubble-color: var(--main-theme-color);
+
+  /* Thư mục & Biểu cảm (Reactions) */
+  --folder-background-color: rgba(15, 23, 42, 0.5);
+  --expanded-folder-background-color: transparent;
+  --reaction-emoji-background-color: rgba(255, 255, 255, 0.04);
+  --reaction-emoji-border-color: 1px solid rgba(255, 255, 255, 0.08);
+  --reaction-emoji-hover-background-color: rgba(56, 189, 248, 0.15);
+  --reaction-emoji-hover-border-color: 1px solid rgba(56, 189, 248, 0.4);
+
+  /* Hiệu ứng nhấp nháy server chưa đọc */
+  --unread-server-animation: starlightPulse;
+
+  /* Cấu hình hiển thị */
+  --server-listing-width: 126px;
+  --font-size: 100%;
+}
+
+/* ============================================================
+   3. CỐ ĐỊNH ẢNH NỀN TOÀN MÀN HÌNH (TRÀN 100% KHÔNG BỊ ĐỨT ĐOẠN)
+   ============================================================ */
+body,
+#app-mount {
+  background: transparent !important;
+  background-image: var(--theme-background-image) !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  background-attachment: fixed !important;
+}
+
+/* ============================================================
+   3b. DARK OVERLAY - LỚP PHỦ TỐI GRADIENT (CHỐNG CHÓI, GIỮ MÀU)
+   Dùng ::before trên #app-mount để phủ lớp tối vignette lên ảnh:
+   - Tâm ảnh bị làm tối ~35% (radial gradient từ trong ra ngoài)
+   - Viền ảnh vẫn rực rỡ màu sắc gốc
+   - Chữ và UI nổi bật, không bị lấn át bởi vùng sáng
+   ============================================================ */
+#app-mount::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.42) 0%,
+    rgba(0, 0, 0, 0.25) 45%,
+    rgba(0, 0, 0, 0.08) 75%,
+    rgba(0, 0, 0, 0.00) 100%
+  );
+}
+
+/* Đảm bảo mọi nội dung bên trong #app-mount nằm trên lớp overlay */
+#app-mount > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Xóa bỏ triệt để các lớp nền đen mặc định của Discord để lộ toàn bộ tranh */
+#app-mount [class*="app_"],
+#app-mount [class*="bg_"],
+#app-mount [class*="layers_"],
+#app-mount [class*="layer_"],
+#app-mount [class*="container_"],
+#app-mount [class*="chat_"],
+#app-mount [class*="chatContent_"],
+#app-mount [class*="sidebar_"],
+#app-mount [class*="panels_"],
+#app-mount [class*="scroller_"],
+#app-mount [class*="messagesWrapper_"] {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* Tắt triệt để mọi hiệu ứng blur */
+*,
+[class*="sidebar_"],
+[class*="panels_"],
+[class*="chat_"],
+[class*="container_"],
+[class*="channelTextArea_"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Animation nhấp nháy server */
+@keyframes starlightPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px #38bdf8) brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px #5eead4) brightness(1.25);
+  }
+}
+
+/* Đổ bóng chữ sắc nét, dễ đọc trên mọi vùng tranh */
+[class*="messageContent_"],
+[class*="headerText_"],
+[class*="name_"] {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.85);
+}
+
+/* Ô soạn tin nhắn gọn gàng, viền sáng nhẹ */
+[class*="channelTextArea_"] {
+  background: rgba(10, 15, 30, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 8px !important;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+[class*="channelTextArea_"]:focus-within {
+  border-color: rgba(56, 189, 248, 0.6) !important;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.25) !important;
+}
+
+/* Viền phân chia siêu mỏng giữa các khu vực */
+[class*="sidebar_"] {
+  border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
